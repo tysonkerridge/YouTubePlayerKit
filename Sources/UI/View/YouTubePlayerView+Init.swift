@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import Foundation
 import SwiftUI
 
@@ -250,3 +251,4 @@ public extension YouTubePlayerView {
     }
     
 }
+#endif

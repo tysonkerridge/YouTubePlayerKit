@@ -1,6 +1,8 @@
 import Combine
 import Foundation
+#if !os(tvOS)
 import WebKit
+#endif
 
 // MARK: - State API
 
@@ -62,6 +64,7 @@ public extension YouTubePlayer {
             .receive(on: DispatchQueue.main)
     }
     
+#if !os(tvOS)
     /// A Publisher that emits the current YouTube player playback quality.
     var playbackQualityPublisher: some Publisher<PlaybackQuality, Never> {
         self.eventPublisher
@@ -172,12 +175,15 @@ public extension YouTubePlayer {
             .share()
     }
     
+    #endif
+    
 }
 
 // MARK: - Playback Control API
 
 public extension YouTubePlayer {
     
+#if !os(tvOS)
     /// A Publisher that emits whenever autoplay or scripted video playback features were blocked.
     /// - Warning: This Publisher relies on the unoffical `.onAutoplayBlocked` event and its behavior and availability may change.
     var autoplayBlockedPublisher: some Publisher<Void, Never> {
@@ -274,6 +280,7 @@ public extension YouTubePlayer {
         await self.webView.setAllMediaPlaybackSuspended(isSuspended)
     }
     
+    
     /// Requests the media playback status of the underlying `WKWebView` instance.
     func requestMediaPlaybackState() async -> WebKit.WKMediaPlaybackState {
         await self.webView.requestMediaPlaybackState()
@@ -283,6 +290,7 @@ public extension YouTubePlayer {
     func closeMediaPresentation() async {
         await self.webView.closeAllMediaPresentations()
     }
+
     
     /// A Publisher that emits the fullscreen state.
     /// - Warning: This Publisher relies on the unoffical `.fullscreenChange` event and its behavior and availability may change.
@@ -321,7 +329,7 @@ public extension YouTubePlayer {
             converter: .typeCast()
         )
     }
-    
+
     /// The web fullscreen state of the underlying `WKWebView` instance.
     /// - Important: This property only indicates the fullscreen state when the ``YouTubePlayer/FullscreenMode`` of the ``YouTubePlayer/Configuration`` is set to `.web`.
     /// **It does not reflect the fullscreen state when playing a video in fullscreen using the `.system` mode.**
@@ -343,12 +351,15 @@ public extension YouTubePlayer {
                 options: [.new]
             )
     }
+    #endif
     
 }
 
 // MARK: - Playback Rate API
 
 public extension YouTubePlayer {
+    
+#if !os(tvOS)
     
     /// A Publisher that emits the current YouTube player playback rate.
     var playbackRatePublisher: some Publisher<PlaybackRate, Never> {
@@ -417,13 +428,14 @@ public extension YouTubePlayer {
         )
         .map(PlaybackRate.init(value:))
     }
-    
+    #endif
 }
 
 // MARK: - Video Information
 
 public extension YouTubePlayer {
     
+#if !os(tvOS)
     /// Returns a Boolean indicating if the detailed video statistics and technical information are visible.
     func isStatsForNerdsVisible() async throws(APIError) -> Bool {
         try await self.evaluate(
@@ -530,5 +542,5 @@ public extension YouTubePlayer {
             return videoEmbedCode
         }
     }
-    
+    #endif
 }

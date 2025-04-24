@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import Foundation
 import WebKit
 
@@ -167,3 +168,4 @@ private extension YouTubePlayerWebView {
     }
     
 }
+#endif

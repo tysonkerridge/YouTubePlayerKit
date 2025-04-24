@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import Foundation
 import WebKit
 
@@ -38,3 +39,4 @@ extension YouTubePlayerWebView: WKUIDelegate {
     }
     
 }
+#endif

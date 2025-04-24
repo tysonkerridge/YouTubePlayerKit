@@ -42,8 +42,10 @@ public final class YouTubePlayer: ObservableObject {
             }
             // Send object will change
             self.objectWillChange.send()
+            #if !os(tvOS)
             // Reload the web view to apply the new parameters
             try? self.webView.load()
+            #endif
         }
     }
     
@@ -64,6 +66,7 @@ public final class YouTubePlayer: ObservableObject {
     /// The playback state subject.
     private(set) lazy var playbackStateSubject = CurrentValueSubject<PlaybackState?, Never>(nil)
     
+    #if !os(tvOS)
     /// The YouTube player web view.
     private(set) lazy var webView: YouTubePlayerWebView = {
         let webView = YouTubePlayerWebView(player: self)
@@ -77,6 +80,7 @@ public final class YouTubePlayer: ObservableObject {
             }
         return webView
     }()
+    #endif
     
     /// The YouTubePlayer WebView Event Subscription
     private var webViewEventSubscription: AnyCancellable?
@@ -227,6 +231,7 @@ extension YouTubePlayer: @preconcurrency Hashable {
     
 }
 
+#if !os(tvOS)
 // MARK: - Handle Event
 
 private extension YouTubePlayer {
@@ -308,3 +313,4 @@ private extension YouTubePlayer {
     }
     
 }
+#endif

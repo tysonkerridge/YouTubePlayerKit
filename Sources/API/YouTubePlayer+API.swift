@@ -1,6 +1,7 @@
 import Combine
 import Foundation
 import OSLog
+#if !os(tvOS)
 
 // MARK: - Event Publisher
 
@@ -15,11 +16,13 @@ public extension YouTubePlayer {
     }
     
 }
+#endif
 
 // MARK: - Evaluate
 
 public extension YouTubePlayer {
-    
+
+#if !os(tvOS)
     /// Evaluates the JavaScript and converts its response.
     /// - Parameters:
     ///   - javaScript: The JavaScript to evaluate.
@@ -34,6 +37,7 @@ public extension YouTubePlayer {
         )
     }
     
+    
     /// Evaluates the JavaScript.
     /// - Parameter javaScript: The JavaScript to evaluate.
     func evaluate(
@@ -44,11 +48,12 @@ public extension YouTubePlayer {
             converter: .void
         )
     }
+#endif
     
 }
 
 // MARK: - Reload
-
+#if !os(tvOS)
 public extension YouTubePlayer {
     
     /// Reloads the YouTube player.
@@ -82,6 +87,7 @@ public extension YouTubePlayer {
     
 }
 
+#endif
 // MARK: - Logger
 
 public extension YouTubePlayer {
@@ -98,3 +104,4 @@ public extension YouTubePlayer {
     }
     
 }
+

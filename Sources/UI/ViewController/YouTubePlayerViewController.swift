@@ -1,3 +1,4 @@
+#if !os(tvOS)
 #if os(macOS)
 import AppKit
 #else
@@ -66,3 +67,4 @@ public final class YouTubePlayerViewController: YouTubePlayerBaseViewController 
     }
     
 }
+#endif

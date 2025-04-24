@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import SwiftUI
 
 // MARK: - YouTubePlayerView
@@ -148,3 +149,4 @@ private extension YouTubePlayerWebView {
     #endif
     
 }
+#endif

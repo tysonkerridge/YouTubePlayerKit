@@ -90,11 +90,13 @@ public extension YouTubePlayer.OpenURLAction {
     static let `default` = Self { url, player in
         // Check if YouTube player source can be initialize from url
         // and it was successfully loaded
+#if !os(tvOS)
         if let source = YouTubePlayer.Source(url: url),
            (try? await player.load(source: source)) != nil  {
             // Return out of function
             return
         }
+        #endif
         // Open url externally
         #if os(macOS)
         _ = try? await NSWorkspace

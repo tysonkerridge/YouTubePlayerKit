@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - Queueing API
-
+#if !os(tvOS)
 public extension YouTubePlayer {
     
     /// Loads a YouTube player source.
@@ -158,3 +158,4 @@ private extension YouTubePlayer {
     }
     
 }
+#endif

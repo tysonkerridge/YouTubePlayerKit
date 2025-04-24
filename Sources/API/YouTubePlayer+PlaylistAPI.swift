@@ -2,6 +2,7 @@ import Foundation
 
 // MARK: - Playlist API
 
+#if !os(tvOS)
 public extension YouTubePlayer {
     
     /// This function loads and plays the next video in the playlist.
@@ -103,3 +104,4 @@ public extension YouTubePlayer {
     }
     
 }
+#endif

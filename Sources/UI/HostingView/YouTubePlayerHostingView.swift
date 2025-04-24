@@ -1,3 +1,4 @@
+#if !os(tvOS)
 #if os(macOS)
 import AppKit
 #else
@@ -59,3 +60,4 @@ public final class YouTubePlayerHostingView: YouTubePlayerHostingBaseView {
     }
     
 }
+#endif

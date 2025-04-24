@@ -1,5 +1,6 @@
 import Foundation
 
+#if !os(tvOS)
 // MARK: - YouTubePlayerWebView+Event
 
 extension YouTubePlayerWebView {
@@ -32,3 +33,4 @@ extension YouTubePlayerWebView.Event {
     }
     
 }
+#endif

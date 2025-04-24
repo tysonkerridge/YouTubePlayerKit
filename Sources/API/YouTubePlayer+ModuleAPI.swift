@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import Combine
 import Foundation
 
@@ -82,3 +83,4 @@ public extension YouTubePlayer {
     }
     
 }
+#endif

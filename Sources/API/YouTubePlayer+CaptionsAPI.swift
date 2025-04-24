@@ -1,3 +1,4 @@
+#if !os(tvOS)
 import Foundation
 
 // MARK: - Captions API
@@ -94,3 +95,4 @@ public extension YouTubePlayer {
     }
     
 }
+#endif

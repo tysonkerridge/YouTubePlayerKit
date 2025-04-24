@@ -1,7 +1,8 @@
 import Foundation
 
 // MARK: - Video Thumbnail API
-
+#if !os(tvOS)
+    
 public extension YouTubePlayer {
     
     /// Returns the video thumbnail URL of the currently loaded video, if available.
@@ -39,3 +40,4 @@ public extension YouTubePlayer {
     }
     
 }
+#endif

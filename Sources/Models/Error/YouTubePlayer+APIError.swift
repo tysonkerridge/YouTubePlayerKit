@@ -1,5 +1,7 @@
 import Foundation
+#if !os(tvOS)
 import struct WebKit.WKError
+#endif
 
 // MARK: - YouTubePlayerAPIError
 
@@ -46,6 +48,7 @@ public extension YouTubePlayer {
     
 }
 
+#if !os(tvOS)
 // MARK: - WebKit Error
 
 public extension YouTubePlayer.APIError {
@@ -56,6 +59,8 @@ public extension YouTubePlayer.APIError {
     }
     
 }
+
+#endif
 
 // MARK: - CustomStringConvertible
 
@@ -70,14 +75,20 @@ extension YouTubePlayer.APIError: CustomStringConvertible {
             .prettyPrinted
         ]
         guard let jsonData = try? jsonEncoder.encode(self) else {
-            return """
+            let main = """
             YouTubePlayer API Error:
             JavaScript: \(self.javaScript ?? .init())
             JavaScript Response: \(self.javaScriptResponse ?? .init())
             Underyling Error: \(self.underlyingError.flatMap(String.init(describing:)) ?? .init())
             Reason: \(self.reason ?? .init())
+            """
+            #if !os(tvOS)
+            return main + """
             WebKit Error Code: \(self.webKitErrorCode.flatMap { String($0.rawValue) } ?? .init())
             """
+            #else
+            return main
+            #endif
         }
         return .init(
             decoding: jsonData,
@@ -110,7 +121,9 @@ extension YouTubePlayer.APIError: Encodable {
         try container.encode(self.javaScriptResponse, forKey: .javaScriptResponse)
         try container.encode(self.underlyingError.flatMap(String.init(describing:)), forKey: .underlyingError)
         try container.encode(self.reason, forKey: .reason)
+#if !os(tvOS)
         try container.encodeIfPresent(self.webKitErrorCode?.rawValue, forKey: .webKitErrorCode)
+        #endif
     }
     
 }

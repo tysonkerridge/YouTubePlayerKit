@@ -155,7 +155,7 @@ public extension YouTubePlayer.Options {
         }()
     ) throws -> Data {
         // Check if iOS 17 or macOS 14.0 or greater are available
-        if #available(iOS 17.0, macOS 14.0, visionOS 1.0, *) {
+        if #available(iOS 17.0, macOS 14.0, visionOS 1.0, tvOS 17.0, *) {
             // Try to encode with configuration
             return try jsonEncoder.encode(
                 self,

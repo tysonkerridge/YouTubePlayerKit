@@ -1,5 +1,6 @@
 import Foundation
 
+#if !os(tvOS)
 // MARK: - YouTubePlayerWebView+evaluate
 
 extension YouTubePlayerWebView {
@@ -157,3 +158,4 @@ private extension YouTubePlayerWebView {
     }
     
 }
+#endif

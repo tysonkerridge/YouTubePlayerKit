@@ -19,7 +19,7 @@ public extension ExpressibleByURL {
     /// - Parameter urlString: The URL string.
     init?(urlString: String) {
         guard let url: URL = {
-            if #available(iOS 17.0, macOS 14.0, visionOS 1.0, *) {
+            if #available(iOS 17.0, macOS 14.0, visionOS 1.0, tvOS 17.0, *) {
                 return .init(
                     string: urlString,
                     encodingInvalidCharacters: false
